@@ -2,14 +2,14 @@
       <header id="MyHeader">
         <!-- logo avec lien vers ma page d'acceil -->
         <!-- <titre-effect delai_prop="150" replacement_prop="_" titre_prop="ELECTR'\ONION"/> -->
-        <router-link id="HeaderTitre" to="/"> <span style="color:#19e13b"> Onion@KER:</span>~\site\{{this.$route.name}}$&nbsp;<titre-effect replacement_prop="&nbsp;" :delai_prop='400' titre_prop="█"/></router-link>
+        <router-link id="HeaderTitre" to="/"> <span style="color:#19e13b"> Onion@Kerguelen:</span>~\site\{{this.$route.name}}$&nbsp;<titre-effect replacement_prop="&nbsp;" :delai_prop='400' titre_prop="█"/></router-link>
         <!-- navigation -->
         <nav>
 
 
             <!-- list item one -->
             <li>
-                <router-link to="/Home">Accueil</router-link>
+                <router-link to="/">Accueil</router-link>
             </li>
             <li>
                 <router-link to="/Articles">Articles</router-link>
@@ -20,11 +20,12 @@
             </li>
             <!-- list item three -->
             <li>
-                <router-link to="/Carte">Carte</router-link>
+                <router-link to="/Cartes">Cartes</router-link>
             </li>
+            <!--
             <li>
                <router-link to="/About">About</router-link>
-            </li>
+            </li>-->
         </nav>
     </header>
 
@@ -42,7 +43,7 @@
     <footer id=MyFooter>
         <p>
             <small>
-                <a>Par Arthur Perrin, avec ces petites mains et <a href="https://vuejs.org/">vue.js</a> - <router-link to="/About">A propos</router-link></a>
+                <a>Par <router-link style="color:#19e13b" to="/About">Arthur Perrin</router-link>, avec ces petites mains et <a style="color:#19e13b" href="https://vuejs.org/">vue.js</a></a>
             </small>
         </p>
     </footer>
@@ -82,7 +83,7 @@ body {
 
 #MyHeader {
     display: flex;
-    background-color: #19e13b8c; /*var(--main-bg-headfoot);*/
+    background-color: #2E34368c; /*var(--main-bg-headfoot);*/
     position: sticky;
     top: 0;
     justify-content: space-between;
@@ -135,11 +136,14 @@ text-decoration: none;
 
 #MyFooter {
     position: absolute;
-    background-color: coral;
+    background-color: #2E34368c;
     width: 100%;
     bottom: 0;
     display: flex;
     justify-content: center;
+    font-family: monospace;
+    color:rgb(15, 100, 190);
+    font-size: 1.2em;
 }
 
 #MyFooter>p {

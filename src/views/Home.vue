@@ -9,11 +9,9 @@
 
     <section>
       <h2>
-        Titre de ma section
+        Derniers Articles
       </h2>
-      <p>
-        Texte de ma section. Avec des articles liés :
-      </p>
+      
       <div>
         <article>
           <h2>
@@ -35,9 +33,17 @@
     </section>
 
     <aside>
-      <p>
-        Texte sans rapport direct.
-      </p>
+      <div id="Heure">
+        <h2>Fuseaux Horaire</h2>
+        <tr>
+          <td>Troyes</td>
+          <td><Heure class="Time" fuseau="Europe/London"/></td>
+        </tr>
+        <tr>
+          <td style="padding-right: 15px">Kerguelen</td>
+          <td><Heure class="Time" fuseau="Indian/Kerguelen"/></td>
+        </tr>
+      </div>
     </aside>
 
   </main>
@@ -47,8 +53,9 @@
 <script>
 
 import Background_image_fade from '../components/Background_image_fade.vue'
+import Heure from '../components/Heure_fuseau.vue'
 export default {
-  components: { Background_image_fade },
+  components: { Background_image_fade, Heure },
   name: 'Home',
 }
 
@@ -68,20 +75,26 @@ main {
 }
 
 main>section,
-main>aside {
-    background-color: rgba(0, 0, 0, 0.385);
+main>aside>#Heure {
+    background-color: #2E34368c;
     color: white;
     border-radius: 20px;
+    font-family:monospace;
 }
 
 main>section {
-    flex-basis: 70%;
-    padding: 20px;
+  
+    flex-basis: 75%;
+    padding: 5px 20px 20px 20px;
 }
 
 main>aside {
-    flex-basis: 20%;
-    padding: 20px;
+  
+  flex-basis: 15%;
+    
+}
+main>aside>#Heure{
+  padding: 5px 20px 20px 20px;
 }
 
 .Background_image_fade{
@@ -93,5 +106,12 @@ main>aside {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.Time{
+  font-weight: bolder;
+  color:coral;
+}
+
+
 
 </style>

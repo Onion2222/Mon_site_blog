@@ -30,7 +30,7 @@
                 clearInterval(this.interval);
             },
             changeString: function() {
-                console.log(this.index+"/"+this.current_titre.length+"/"+this.current_titre);
+                
                 if(!(this.index==this.current_titre.length)){
                 
                     this.titre = this.current_titre.substr(0, this.index) + this.replacement + this.current_titre.substr(this.index + 1, this.current_titre.length);
@@ -41,7 +41,6 @@
             }
         },
         mounted: function() {
-            console.log("mounted");
             this.current_titre = this.titre;
             this.start();
             
