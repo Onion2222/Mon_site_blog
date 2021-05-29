@@ -2,7 +2,7 @@
       <header id="MyHeader">
         <!-- logo avec lien vers ma page d'acceil -->
         <!-- <titre-effect delai_prop="150" replacement_prop="_" titre_prop="ELECTR'\ONION"/> -->
-        <router-link id="HeaderTitre" to="/"> <span style="color:#19e13b"> Onion@Kerguelen:</span>~\site\{{this.$route.name}}$&nbsp;<titre-effect replacement_prop="&nbsp;" :delai_prop='400' titre_prop="█"/></router-link>
+        <router-link id="HeaderTitre" to="/"> <span style="color:#19e13b"> Onion@Kerguelen:</span>~\{{this.$route.name}}$&nbsp;<titre-effect replacement_prop="&nbsp;" :delai_prop='400' titre_prop="█"/></router-link>
         <!-- navigation -->
         <nav>
 
@@ -91,7 +91,7 @@ body {
 }
 
 #MyHeader > #HeaderTitre {
-text-decoration: none;
+    text-decoration: none;
     padding-right: 2vw;
     padding-left: 2vw;
     margin-top: 0px;
@@ -114,7 +114,7 @@ text-decoration: none;
 
 #MyHeader > nav > li > a {
     float: right;
-    border-left: 1px solid #bbb;
+    border-left: 4px solid #bbb;
     display: block;
     color: white;
     text-shadow: rgba(0, 0, 0, 0.25) 1px 1px;
@@ -125,7 +125,7 @@ text-decoration: none;
 }
 
 #MyHeader > nav > li a:hover:not(.active) {
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 #MyHeader > nav > a:hover {
