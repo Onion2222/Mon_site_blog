@@ -1,0 +1,13 @@
+Pour afficher un site static qui vient de public:
+
+dans template:
+<iframe id="inlineFrameExample" :src="`${publicPath}Articles/article1/index.html`"></iframe>
+
+dans script:
+data () {
+  return {
+    publicPath: process.env.BASE_URL
+  }
+}
+
+/!\ ${publicPath} donne "/" -> ne pas en rajouter

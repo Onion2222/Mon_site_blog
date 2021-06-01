@@ -2,7 +2,7 @@
       <header id="MyHeader">
         <!-- logo avec lien vers ma page d'acceil -->
         <!-- <titre-effect delai_prop="150" replacement_prop="_" titre_prop="ELECTR'\ONION"/> -->
-        <router-link id="HeaderTitre" to="/"> <span style="color:#19e13b"> Onion@Kerguelen:</span>~\{{this.$route.name}}$&nbsp;<titre-effect replacement_prop="&nbsp;" :delai_prop='400' titre_prop="█"/></router-link>
+        <router-link id="HeaderTitre" to="/"> <span style="color:#00FF00"> Onion@Kerguelen<span style="color:#5555FF">:</span></span>~\{{this.$route.name}}<span style="color:#09AD55">$&nbsp;<titre-effect replacement_prop="&nbsp;" :delai_prop='400' titre_prop="█"/></span></router-link>
         <!-- navigation -->
         <nav>
 
@@ -43,7 +43,7 @@
     <footer id=MyFooter>
         <p>
             <small>
-                <a>Par <router-link style="color:#19e13b" to="/About">Arthur Perrin</router-link>, avec ces petites mains et <a style="color:#19e13b" href="https://vuejs.org/">vue.js</a></a>
+                <a>- Par <router-link style="color:#19e13b" to="/About">Arthur Perrin</router-link>, avec ces petites mains et <a style="color:#19e13b" href="https://vuejs.org/">vue.js</a> -</a>
             </small>
         </p>
     </footer>
@@ -57,7 +57,7 @@
 import TitreEffect from './components/TitreEffect'
 export default {
   components: { TitreEffect },
-  name: 'App',
+  name: 'App'
 }
 </script>
 
@@ -66,6 +66,7 @@ export default {
 <style lang="scss">
 body {
     margin: 0;
+    background-color: #2E3436;
 }
 
 /*
@@ -99,8 +100,8 @@ body {
     margin-top:2px;
     color: rgb(15, 100, 190);
     font-family: monospace;
-    font-size: 2.5em;
-    text-shadow: #0000008c 2px 2px;
+    font-size: 1.5em;
+    text-shadow: #0000008c 1.5px 1.5px;
 }
 
 #MyHeader > nav {
@@ -109,17 +110,17 @@ body {
     overflow: hidden;
     display: flex;
     list-style-type: none;
-    font-size: 1.25em;
+    font-size: 1em;
 }
 
 #MyHeader > nav > li > a {
     float: right;
-    border-left: 4px solid #bbb;
+    border-left: 2px solid #bbb;
     display: block;
     color: white;
     text-shadow: rgba(0, 0, 0, 0.25) 1px 1px;
     text-align: center;
-    padding: 10px 10px;
+    padding: 5px 5px;
     text-decoration: none;
     font-family: monospace;
 }
@@ -143,7 +144,8 @@ body {
     justify-content: center;
     font-family: monospace;
     color:rgb(15, 100, 190);
-    font-size: 1.2em;
+    font-size: 1em;
+    text-shadow: 1px 1px black;
 }
 
 #MyFooter>p {
