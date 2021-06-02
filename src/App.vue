@@ -2,8 +2,12 @@
       <header id="MyHeader">
         <!-- logo avec lien vers ma page d'acceil -->
         <!-- <titre-effect delai_prop="150" replacement_prop="_" titre_prop="ELECTR'\ONION"/> -->
-        <router-link id="HeaderTitre" to="/"> <span style="color:#00FF00"> Onion@Kerguelen<span style="color:#5555FF">:</span></span>~\{{this.$route.name}}<span style="color:#09AD55">$&nbsp;<titre-effect replacement_prop="&nbsp;" :delai_prop='400' titre_prop="█"/></span></router-link>
-        <!-- navigation -->
+        <router-link id="HeaderTitre" to="/">
+            <span style="color:#00FF00">Onion@Kerguelen</span>
+            <span style="color:#09AD55">:</span>
+            <span style="color:#5555FF">~\{{this.$route.name}}</span>
+            <span style="color:#09AD55">$&nbsp;<titre-effect replacement_prop="&nbsp;" :delai_prop='400' titre_prop="█"/></span></router-link>
+            <!-- navigation -->
         <nav>
 
 
@@ -94,14 +98,13 @@ body {
 #MyHeader > #HeaderTitre {
     text-decoration: none;
     padding-right: 2vw;
-    padding-left: 2vw;
+    padding-left: 1vw;
     margin-top: 0px;
     margin-bottom: 2px;
     margin-top:2px;
-    color: rgb(15, 100, 190);
     font-family: monospace;
     font-size: 1.5em;
-    text-shadow: #0000008c 1.5px 1.5px;
+    text-shadow: #0000008c 1px 1px;
 }
 
 #MyHeader > nav {

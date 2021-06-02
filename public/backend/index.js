@@ -3,6 +3,7 @@ var url = require('url');
 var querystring = require('querystring');
 var fs = require('fs');
 var xml2js = require('xml2js');
+const { parseBooleans } = require('xml2js/lib/processors');
 
 var server = http.createServer();
 
@@ -38,7 +39,7 @@ function f_updateDB() {
         }
     });
     //trier par date
-    new_db.sort((a, b) => b.birthtime - a.birthtime);
+    new_db.sort((b, a) => b.birthtime - a.birthtime);
 
     database = new_db;
     console.log(database);
@@ -105,7 +106,12 @@ server.on('request', function(request, response) {
                             console.log(result.html.head[0]);
                             console.log('Done');
                             response.writeHead(200); //, headers);
-                            response.end("<img src=\"" + url_article + result.html.head[0].image_titre[0] + "\"></img><h1>" + result.html.head[0].title[0] + "</h1><a>" + result.html.head[0].description[0] + "</a>");
+                            let html_response = "<h1>" + result.html.head[0].title[0] + "</h1><a>" + result.html.head[0].description[0] + "</a>";
+
+                            if (result.html.head[0].image_titre[0] && result.html.head[0].image_titre[0].length != 0) {
+                                html_response = "<img src=\"" + url_article + result.html.head[0].image_titre[0] + "\"></img>" + html_response;
+                            }
+                            response.end(html_response);
 
                         });
                     } catch (e) {

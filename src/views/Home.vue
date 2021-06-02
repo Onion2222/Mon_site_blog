@@ -5,13 +5,12 @@
   <main>
 
     <section>
-      <h2>
-        Derniers Articles
-      </h2>
-        
+      <h2 style="display: inline-block">Derniers Articles:</h2><button class="asText" v-on:click="updateArticles">&nbsp;&nbsp;🔄</button>
       <div id=derniers_articles>
-        <article id="Article1" v-html="articles[1]"></article>
-        <article id="Article2" v-html="articles[1]"></article>
+        <article class="Article" v-html="articles[0]"></article>
+        <article class="Article" v-html="articles[1]"></article>
+        <article class="Article" v-html="articles[2]"></article>
+        <article class="Article" ><router-link id="linkToArticles" to="/Articles"><h1>>Autres<br>articles</h1></router-link></article>
       </div>
     </section>
 
@@ -19,7 +18,7 @@
       <div id="Heure">
         <h2>Fuseaux Horaire</h2>
         <tr>
-          <td>Troyes/Compiègne</td>
+          <td>Troyes</td>
           <td><Heure class="Time" fuseau="Europe/Paris"/></td>
         </tr>
         <tr>
@@ -40,6 +39,11 @@
         loading="lazy"
         style="border: 1px solid black">
       </iframe>
+      <h2>Me contacter</h2>
+      <a><u>Mail:</u><br>
+      arthurperrin.22@gmail.com<br>
+      <u>Postale:</u><br>
+      BLABLABLA</a>
     </aside>
 
   </main>
@@ -55,31 +59,30 @@ export default {
   name: 'Home',
   data() {
             return {
-            articles:[" "," "," "]
+            articles:["<a>Chargement<a/>"," "," "]
             }
   },
   methods: {
     renderArticle : function(index) {
-      //console.log("===>"+window.location.hostname+":8081");
-
       fetch("http://"+window.location.hostname+":8081?content=preview&index="+index,{
 
       }).then(result => {
         result.text().then(data => {
 
-          //console.log("RESULT=>"+data);
-
-          console.log("(((((((=>"+data);
           this.articles[index]=data;
-          console.log("(((((((=>"+this.articles[index]);
         })
-        //result.json().then(function(data){console.log(data);return data});
 
       })
+    },
+    updateArticles: function(){
+      for (let i = 0; i < 3; i++) {
+        this.articles[i]="<a id=chargement>Chargement...<a/>"
+        this.renderArticle(i);
+      }
     }
   },
   mounted : function(){
-    this.renderArticle(1);
+    this.updateArticles();
   }
 }
 
@@ -99,25 +102,25 @@ main {
     flex-wrap: wrap;
     justify-content: space-around;
     padding-top: 30px;
-    align-items: stretch;
+    align-items: flex-start;
 }
 
 main>section,
 main>aside {
     background-color: #2E34368c;
     color: white;
-    border-radius: 20px;
+    border-radius: 5px;
     font-family:monospace;
 }
 
 main>section {
   
-    flex-basis: 75%;
+    flex-basis: 70%;
     padding: 5px 20px 20px 20px;
 }
 
 main>aside {
-  flex-basis: 15%;
+  flex-basis: 20%;
     
 }
 main>aside{
@@ -126,16 +129,16 @@ main>aside{
 
 .Background_image_fade{
   position: fixed;
-    top: 0;
-    width: 100%;
-    min-height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  top: 0;
+  width: 100%;
+  min-height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #Heure > tr > td{
-  width: 100%;
+  max-width: 100%;
   /*border: 1px solid rgb(255, 255, 255);*/
 }
 
@@ -148,24 +151,51 @@ main>aside{
 
 #derniers_articles{
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-around;
-  padding-top: 30px;
-  align-items: stretch;
-  flex-basis: auto;
+  justify-content: left;
+  padding-top: 15px;
 }
 
 #derniers_articles > article{
-  width: 20%;
-  background-color: #bfcace8c;
-  border-radius: 20px;
-  padding: 5px 20px 20px 20px;
+  width: 25%;
+  max-height: 200px;
+  background-color: #bfcace52;
+  border-radius: 10px;
+  margin-right: 2%;
+  overflow:hidden;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  
 }
 
 #derniers_articles > article > img{
   max-width:100%;
   max-height:100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#derniers_articles > article > h1 {
+  display: block;
+  margin: 10px;
+}
+#derniers_articles > article > a {
+  display: block;
+  margin: 10px;
+}
+
+#linkToArticles{
+  width:100%;
+  height: 100%;
+  text-decoration: none;
+  color:white;
+}
+
+.asText {
+    background:none;
+    border:none;
+    margin:0;
+    padding:0;
+    cursor: pointer;
 }
 
 </style>
