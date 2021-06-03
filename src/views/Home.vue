@@ -7,9 +7,8 @@
     <section>
       <h2 style="display: inline-block">Derniers Articles:</h2><button class="asText" v-on:click="updateArticles">&nbsp;&nbsp;🔄</button>
       <div id=derniers_articles>
-        <article class="Article" v-html="articles[0]"></article>
-        <article class="Article" v-html="articles[1]"></article>
-        <article class="Article" v-html="articles[2]"></article>
+        <ArticlePreview :index="0"></ArticlePreview >
+        
         <article class="Article" ><router-link id="linkToArticles" to="/Articles"><h1>>Autres<br>articles</h1></router-link></article>
       </div>
     </section>
@@ -54,35 +53,18 @@
 
 import Background_image_fade from '../components/Background_image_fade.vue'
 import Heure from '../components/Heure_fuseau.vue'
+import ArticlePreview from '../components/PreviewArticle'
 export default {
-  components: { Background_image_fade, Heure },
+  components: { Background_image_fade, Heure, ArticlePreview },
   name: 'Home',
   data() {
             return {
-            articles:["<a>Chargement<a/>"," "," "]
             }
   },
   methods: {
-    renderArticle : function(index) {
-      fetch("http://"+window.location.hostname+":8081?content=preview&index="+index,{
-
-      }).then(result => {
-        result.text().then(data => {
-
-          this.articles[index]=data;
-        })
-
-      })
-    },
-    updateArticles: function(){
-      for (let i = 0; i < 3; i++) {
-        this.articles[i]="<a id=chargement>Chargement...<a/>"
-        this.renderArticle(i);
-      }
-    }
+    
   },
   mounted : function(){
-    this.updateArticles();
   }
 }
 
@@ -155,33 +137,6 @@ main>aside{
   padding-top: 15px;
 }
 
-#derniers_articles > article{
-  width: 25%;
-  max-height: 200px;
-  background-color: #bfcace52;
-  border-radius: 10px;
-  margin-right: 2%;
-  overflow:hidden;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-  
-}
-
-#derniers_articles > article > img{
-  max-width:100%;
-  max-height:100%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-#derniers_articles > article > h1 {
-  display: block;
-  margin: 10px;
-}
-#derniers_articles > article > a {
-  display: block;
-  margin: 10px;
-}
 
 #linkToArticles{
   width:100%;
