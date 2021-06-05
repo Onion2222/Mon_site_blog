@@ -1,9 +1,11 @@
 <template>
-    <div id="Article">
-        <img :src="`${image}`">
-        <h1>{{titre}}</h1>
-        <a>{{description}}</a>
-    </div>
+    <a :href="`${url}`">
+        <div id="Article" >
+            <img :src="`${image}`">
+            <h1>{{titre}}</h1>
+            <a>{{description}}</a>
+        </div>
+    </a>
 </template>
 
 <script>
@@ -36,7 +38,7 @@
                 .then(response => response.json())
                 .then(data => {
                     let article=data.articles[this.Vindex];
-                    this.url=article.url+article.name;
+                    this.url=article.url+"/index.html";
                     this.date=article.birthtime; //a adapter
 
                     this.titre=article.preview.titre;
@@ -61,21 +63,38 @@
 
 <style scoped lang="scss">
 
+a{
+text-decoration: none;
+  color:white;
+}
+
 #Article{
-  width: 25%;
-  max-height: 200px;
+  width: 200px;
+  height: 300px;
   background-color: #bfcace52;
-  border-radius: 10px;
-  margin-right: 2%;
+  border-radius: 2px;
+  border-top-left-radius: 20px;
+  margin-right: 15px;
+  margin-bottom: 15px;
   overflow:hidden;
   word-wrap: break-word;
   text-overflow: ellipsis;
+  box-shadow: rgba(0, 0, 0, 0.75) 4px 4px;
   
+
+
+  transition: transform 250ms;
+  
+}
+#Article:hover {
+    transform: translateY(-10px);
 }
 
 #Article > img{
-  max-width:100%;
-  max-height:100%;
+  /*max-width:100%;*/
+  max-height: 150px;
+  object-fit: cover;
+  margin: 0 auto;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -90,5 +109,6 @@
   display: block;
   margin: 10px;
 }
+
 
 </style>

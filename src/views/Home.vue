@@ -1,5 +1,5 @@
 <template>
-  
+  <div id="template">
   <Background_image_fade :images_prop="['im1.jpg', 'im2.jpg', 'im3.jpg']" :delai_prop="5000"/>
 
   <main>
@@ -8,8 +8,10 @@
       <h2 style="display: inline-block">Derniers Articles:</h2><button class="asText" v-on:click="updateArticles">&nbsp;&nbsp;🔄</button>
       <div id=derniers_articles>
         <ArticlePreview :index="0"></ArticlePreview >
+        <ArticlePreview :index="1"></ArticlePreview >
+        <ArticlePreview :index="2"></ArticlePreview >
         
-        <article class="Article" ><router-link id="linkToArticles" to="/Articles"><h1>>Autres<br>articles</h1></router-link></article>
+        <div><router-link id="linkToArticles" to="/Articles"><h1>>Autres<br>articles</h1></router-link></div>
       </div>
     </section>
 
@@ -47,7 +49,9 @@
 
   </main>
 
+  </div>
 </template>
+
 
 <script>
 
@@ -78,35 +82,43 @@ export default {
 
 
 <style lang="scss">
+
+
+
 main {
     display: flex;
-    flex-direction: row;
+    /*flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
     padding-top: 30px;
-    align-items: flex-start;
+    align-items: flex-start;*/
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+
+    background-color: #2E34368c;
 }
 
 main>section,
 main>aside {
-    background-color: #2E34368c;
+    /*background-color: #2E34368c;*/
     color: white;
-    border-radius: 5px;
     font-family:monospace;
+    padding: 5px 20px 20px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.22) ;
+    
 }
 
 main>section {
-  
-    flex-basis: 70%;
-    padding: 5px 20px 20px 20px;
+    /*flex-basis: 75%;*/
+    width: 80%;
+    /*padding: 5px 20px 20px 20px;*/
 }
 
-main>aside {
-  flex-basis: 20%;
-    
-}
+
 main>aside{
-  padding: 5px 20px 20px 20px;
+  width: 20%;
+  /*flex-basis: auto;*/
+  /*padding: 5px 20px 20px 20px;*/
 }
 
 .Background_image_fade{

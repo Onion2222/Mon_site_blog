@@ -38,7 +38,7 @@ app.listen(PORT, () => {
 
 
 //maintenant les choses serieuses
-const path_to_articles = __dirname + "/../Articles";
+const path_to_articles = "../Articles";
 
 var CronJob = require('cron').CronJob;
 var fs = require('fs');

@@ -77,11 +77,12 @@
     position: fixed;
     top: 0;
     width: 100%;
-    min-height: 100%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    height: 100%;
+    
+    object-fit: cover;
 }
+
+
 
 .fade-leave-active {
     transition: opacity 1.5s;
