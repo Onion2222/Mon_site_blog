@@ -73,19 +73,26 @@ function f_updateDB() {
                 try {
                     let parser = new xml2js.Parser();
                     parser.parseString(html, function(err, result) {
-                        console.log(result.html.head[0]);
-                        console.log('Done');
+                        console.log("==================>", err);
+                        //console.log(result.html.head[0].meta);
+
                         new_folder.preview = {
                             titre: result.html.head[0].title[0],
-                            description: result.html.head[0].description[0],
-                            url_img: result.html.head[0].image_titre[0]
                         };
+
+                        result.html.head[0].meta.forEach(element => {
+                            console.log(element);
+                            if (element.$.name == "author") new_folder.preview.auteur = element.$.content;
+                            if (element.$.name == "description") new_folder.preview.description = element.$.content;
+                            if (element.$.name == "image_titre") new_folder.preview.url_img = element.$.src;
+                        });
+
                     });
                 } catch (e) {
                     console.log(e);
                 }
 
-
+                console.log(new_folder.preview);
                 new_db.articles.push(new_folder);
             }
         } catch (err) {

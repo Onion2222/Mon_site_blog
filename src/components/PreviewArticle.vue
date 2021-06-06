@@ -2,8 +2,11 @@
     <router-link :to="'/articles/' + url">
         <div id="Article" >
             <img :src="`${image}`">
-            <h1>{{titre}}</h1>
-            <a>{{description}}</a>
+            <div id="dataArticle">
+                <h1>{{titre}}</h1>
+                <small>Par <strong>{{auteur}}</strong> le <strong>{{date}}</strong></small>
+                <!-- <a>{{description}}</a> -->
+            </div>
         </div>
     </router-link>
 </template>
@@ -48,13 +51,11 @@
                 .then(data => {
                     let article=data.articles[this.Vindex];
                     this.url=article.name;
-                    this.date=article.birthtime; //a adapter
+                    this.date=new Date(article.birthtime).toLocaleDateString(); //a adapter
                     this.titre=article.preview.titre;
                     this.description=article.preview.description;
-                    this.author=article.author;
-                    this.image="./Articles/"+article.name+"/"+article.preview.url_img; //a fair si pas image
-                    console.log("======================>",this.url);
-                    
+                    this.auteur=article.preview.auteur;
+                    this.image="./Articles/"+article.name+"/"+article.preview.url_img; //a fair si pas image                    
                 })
             }
             
@@ -82,26 +83,26 @@ a{
 }
 
 #Article{
-    width: 200px;
-    height: 300px;
+    width: 175px;
+    height: 150px;
     background-color: #bfcace52;
     border-radius: 2px;
-    border-top-left-radius: 20px;
+    border-top-left-radius: 15px;
     margin-right: 15px;
     margin-bottom: 15px;
     overflow:hidden;
-    word-wrap: break-word;
-    text-overflow: ellipsis;
     box-shadow: rgba(0, 0, 0, 0.75) 4px 4px;
     transition: transform 250ms;
-}
-#Article:hover {
-    transform: translateY(-10px);
+    position: relative;
+    display: flex;
 }
 
 #Article > img{
   /*max-width:100%;*/
-  max-height: 150px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-height: 100%;
   object-fit: cover;
   margin: 0 auto;
   display: block;
@@ -109,15 +110,30 @@ a{
   margin-right: auto;
 }
 
-#Article > h1 {
-  display: block;
-  margin: 10px;
+
+#dataArticle{
+    background-color: rgba(0, 0, 0, 0.1);
+    z-index: 5;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 0px;
+    padding-bottom: 5px;
+    text-shadow: black 1px 1px;
+    align-self: flex-end;
+    line-height: 0.9;
+    width:100%;
 }
 
-#Article > a {
-  display: block;
-  margin: 10px;
+#dataArticle > small{
+    margin-top:0px;
+}
+#dataArticle > h1{
+    margin-bottom:5px;
+    margin-top:5px;
 }
 
+#Article:hover {
+    transform: rotate(5deg); /*translateY(-10px);*/
+}
 
 </style>
