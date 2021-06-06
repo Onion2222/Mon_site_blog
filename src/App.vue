@@ -5,8 +5,8 @@
         <router-link id="HeaderTitre" to="/">
             <span style="color:#00FF00">Onion@Kerguelen</span>
             <span style="color:#09AD55">:</span>
-            <span style="color:#5555FF">~\{{this.$route.name}}</span>
-            <span style="color:#09AD55">$&nbsp;<titre-effect replacement_prop="&nbsp;" :delai_prop='400' titre_prop="█"/></span></router-link>
+            <span style="color:#5555FF">~{{this.$route.path }}</span>
+            <span style="color:#09AD55">$&nbsp;<span class="blinkText">█</span></span></router-link>
             <!-- navigation -->
         <nav>
 
@@ -16,15 +16,15 @@
                 <router-link to="/">Accueil</router-link>
             </li>
             <li>
-                <router-link to="/Articles">Articles</router-link>
+                <router-link to="/articles">Articles</router-link>
             </li>
             <!-- list item two -->
             <li>
-                <router-link to="/Photos">Photos</router-link>
+                <router-link to="/photos">Photos</router-link>
             </li>
             <!-- list item three -->
             <li>
-                <router-link to="/Cartes">Cartes</router-link>
+                <router-link to="/cartes">Cartes</router-link>
             </li>
             <!--
             <li>
@@ -58,9 +58,7 @@
 
 
 <script>
-import TitreEffect from './components/TitreEffect'
 export default {
-  components: { TitreEffect },
   name: 'App'
 }
 </script>
@@ -83,7 +81,9 @@ body {
 }*/
 
 
-
+#MyHeader,#MyFooter{
+    z-index: 10;
+}
 
 
 #MyHeader {
@@ -139,7 +139,7 @@ body {
 
 
 #MyFooter {
-    position: absolute;
+    position: relative;
     background-color: #2E34368c;
     width: 100%;
     bottom: 0;
@@ -156,6 +156,18 @@ body {
     margin: 0;
 }
 
+.blinkText {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+
+    0%{     opacity: 1;    }
+    49%{    opacity: 1; }
+    60%{    opacity: 0; }
+    99%{    opacity: 0;  }
+    100%{   opacity: 1;    }
+}
 
 
 

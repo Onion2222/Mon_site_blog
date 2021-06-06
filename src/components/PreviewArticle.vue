@@ -1,11 +1,11 @@
 <template>
-    <a :href="`${url}`">
+    <router-link :to="'/articles/' + url">
         <div id="Article" >
             <img :src="`${image}`">
             <h1>{{titre}}</h1>
             <a>{{description}}</a>
         </div>
-    </a>
+    </router-link>
 </template>
 
 <script>
@@ -14,41 +14,54 @@
         name: 'ArticlePreview',
         props: {
             mode: String,
-            index: Number
+            index: Number,
+            refresh: Boolean
         },
         data() {
             return {
                 Vmode:   this.mode,
                 Vindex:  this.index,
-                url:"",
+                url:"erreur",
                 image:"",
-                titre:"",
+                titre:"Chargement...",
                 description:"",
                 auteur:"",
                 date:""
             }
         },
-      
-        methods: {
-            
-            
+        watch: { 
+            refresh: function() {
+                this.titre="Chargement..."
+                this.url="erreur";
+                this.image="";
+                this.description="";
+                this.auteur="";
+                this.date="";
+                this.updateArticles();
+            }
         },
-        mounted: function() {
-            fetch("http://"+window.location.hostname+":8080/backend/list",{})
+            
+        methods: {
+            updateArticles: function(){
+                fetch("http://"+window.location.hostname+":8080/backend/list",{})
                 .then(response => response.json())
                 .then(data => {
                     let article=data.articles[this.Vindex];
-                    this.url=article.url+"/index.html";
+                    this.url=article.name;
                     this.date=article.birthtime; //a adapter
-
                     this.titre=article.preview.titre;
                     this.description=article.preview.description;
                     this.author=article.author;
                     this.image="./Articles/"+article.name+"/"+article.preview.url_img; //a fair si pas image
-                    console.log("====>imgurl:",this.image);
-
+                    console.log("======================>",this.url);
+                    
                 })
-        
+            }
+            
+        },
+        mounted: function() {
+            this.updateArticles();
+            
         },
         unmounted: function() {
         }
@@ -64,27 +77,23 @@
 <style scoped lang="scss">
 
 a{
-text-decoration: none;
-  color:white;
+    text-decoration: none;
+    color:white;
 }
 
 #Article{
-  width: 200px;
-  height: 300px;
-  background-color: #bfcace52;
-  border-radius: 2px;
-  border-top-left-radius: 20px;
-  margin-right: 15px;
-  margin-bottom: 15px;
-  overflow:hidden;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
-  box-shadow: rgba(0, 0, 0, 0.75) 4px 4px;
-  
-
-
-  transition: transform 250ms;
-  
+    width: 200px;
+    height: 300px;
+    background-color: #bfcace52;
+    border-radius: 2px;
+    border-top-left-radius: 20px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    overflow:hidden;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    box-shadow: rgba(0, 0, 0, 0.75) 4px 4px;
+    transition: transform 250ms;
 }
 #Article:hover {
     transform: translateY(-10px);

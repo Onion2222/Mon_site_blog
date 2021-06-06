@@ -1,6 +1,6 @@
 const express = require("express");
 var history = require('connect-history-api-fallback'); //https://github.com/bripkens/connect-history-api-fallback
-var cors = require('cors')
+var cors = require('cors');
 
 
 var backend = require('./app/backend');

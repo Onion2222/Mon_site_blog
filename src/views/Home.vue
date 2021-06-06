@@ -5,13 +5,13 @@
   <main>
 
     <section>
-      <h2 style="display: inline-block">Derniers Articles:</h2><button class="asText" v-on:click="updateArticles">&nbsp;&nbsp;🔄</button>
+      <h2 style="display: inline-block">Derniers Articles:</h2><button class="asText" v-on:click="this.forceRefresh=!this.forceRefresh">&nbsp;&nbsp;🔄</button>
       <div id=derniers_articles>
-        <ArticlePreview :index="0"></ArticlePreview >
-        <ArticlePreview :index="1"></ArticlePreview >
-        <ArticlePreview :index="2"></ArticlePreview >
+        <ArticlePreview :index="0" :refresh="forceRefresh"></ArticlePreview >
+        <ArticlePreview :index="1" :refresh="forceRefresh"></ArticlePreview >
+        <ArticlePreview :index="2" :refresh="forceRefresh"></ArticlePreview >
         
-        <div><router-link id="linkToArticles" to="/Articles"><h1>>Autres<br>articles</h1></router-link></div>
+        <router-link to="/Articles" tag="div" id="linkToArticles"><h1>>Autres<br>articles...</h1></router-link>
       </div>
     </section>
 
@@ -63,10 +63,11 @@ export default {
   name: 'Home',
   data() {
             return {
+              forceRefresh:false
             }
   },
   methods: {
-    
+
   },
   mounted : function(){
   }
@@ -151,10 +152,23 @@ main>aside{
 
 
 #linkToArticles{
-  width:100%;
+  padding: 10px;
   height: 100%;
+  background-color: #bfcace52;
+  box-shadow: rgba(0, 0, 0, 0.75) 4px 4px;
+  border-radius: 2px;
+  border-top-left-radius: 20px;
+  margin-right: 15px;
+  margin-bottom: 15px;
+  transition: transform 250ms;
   text-decoration: none;
-  color:white;
+  
+}
+#linkToArticles:hover {
+    transform: translateY(-10px);
+}
+#linkToArticles > h1 {
+  color:coral;
 }
 
 .asText {
@@ -164,5 +178,8 @@ main>aside{
     padding:0;
     cursor: pointer;
 }
+
+
+
 
 </style>
