@@ -1,9 +1,9 @@
 <template>
-  
-  <h1>ARTICLES LISTE</h1>
-
-  <div id=liste_articles v-for="(input, index) in ListeArticle" v-bind:key="index">
-        <ArticlePreview :index="index" refresh="forceRefresh"></ArticlePreview >
+    <h1>Tout les articles:</h1>
+  <div id="mainListeArticles">
+    <div id=liste_articles v-for="(input, index) in ListeArticle" v-bind:key="index">
+          <ArticlePreview :index="index"></ArticlePreview >
+    </div>
   </div>
   
 </template>
@@ -50,3 +50,21 @@ import ArticlePreview from '../components/PreviewArticle'
  
 
 </script>
+
+<style lang="scss">
+#mainListeArticles{
+
+  background-color:slategray;
+  border: tan 5px  solid;
+  width: 80%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#liste_articles{
+  justify-content: left;
+  padding-top: 15px;
+  flex-flow: column;
+  flex-direction: column;
+}
+</style>

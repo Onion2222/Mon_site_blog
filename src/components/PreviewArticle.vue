@@ -55,7 +55,7 @@
                     this.titre=article.preview.titre;
                     this.description=article.preview.description;
                     this.auteur=article.preview.auteur;
-                    this.image="./Articles/"+article.name+"/"+article.preview.url_img; //a fair si pas image                    
+                    this.image="./Ressources/Articles/"+article.name+"/"+article.preview.url_img; //a fair si pas image                    
                 })
             }
             
@@ -84,7 +84,7 @@ a{
 
 #Article{
     width: 175px;
-    height: 150px;
+    height: 200px;
     background-color: #bfcace52;
     border-radius: 2px;
     border-top-left-radius: 15px;

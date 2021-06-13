@@ -5,7 +5,7 @@
         <router-link id="HeaderTitre" to="/">
             <span style="color:#00FF00">Onion@Kerguelen</span>
             <span style="color:#09AD55">:</span>
-            <span style="color:#5555FF">~{{this.$route.path }}</span>
+            <span style="color:#5555FF">~{{decodeURI(this.$route.path) }}</span>
             <span style="color:#09AD55">$&nbsp;<span class="blinkText">█</span></span></router-link>
             <!-- navigation -->
         <nav>

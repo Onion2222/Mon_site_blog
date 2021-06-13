@@ -38,7 +38,7 @@ app.listen(PORT, () => {
 
 
 //maintenant les choses serieuses
-const path_to_articles = "../Articles";
+const path_to_articles = "../Ressources/Articles";
 
 var CronJob = require('cron').CronJob;
 var fs = require('fs');
@@ -73,7 +73,7 @@ function f_updateDB() {
                 try {
                     let parser = new xml2js.Parser();
                     parser.parseString(html, function(err, result) {
-                        console.log("==================>", err);
+                        console.log("======ERREUR============>", err);
                         //console.log(result.html.head[0].meta);
 
                         new_folder.preview = {
@@ -104,6 +104,11 @@ function f_updateDB() {
 
     console.log(new_db);
     console.log("=====");
+
+    //trie des objets par date:
+    new_db.articles = new_db.articles.sort(function(a,b){
+        return new Date(b.birthtime) - new Date(a.birthtime);
+    });
 
     // stringify JSON Object
     var jsonContent = JSON.stringify(new_db);
