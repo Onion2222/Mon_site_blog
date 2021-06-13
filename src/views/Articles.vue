@@ -47,11 +47,9 @@ export default {
 #mainArticle{
   display: flex;
   flex-direction: row;
-  border: 1px dotted green;
 }
 #myIframeDiv{
   width:100%;
-  border: 1px dotted blue;
 }
 
 iframe{
@@ -59,7 +57,6 @@ iframe{
   display: block;
   width:90%;
   right:0;
-  border: 1px dotted red;
 }
 aside{
   width:10%;
